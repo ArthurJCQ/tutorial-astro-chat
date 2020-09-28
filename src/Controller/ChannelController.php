@@ -35,7 +35,7 @@ class ChannelController extends AbstractController
             'channel' => $channel
         ], ['createdAt' => 'ASC']);
 
-        return $this->render('chat/index.html.twig', [
+        return $this->render('channel/chat.html.twig', [
             'channel' => $channel,
             'messages' => $messages
         ]);
