@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Service\Mercure;
+namespace App\Services\Mercure;
 
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Hmac\Sha256;
