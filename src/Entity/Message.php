@@ -42,7 +42,7 @@ class Message
      */
     private Channel $channel;
 
-    public function __construct(\DateTime $createdAt)
+    public function __construct()
     {
         $this->createdAt = new \DateTime();
     }
