@@ -22,7 +22,7 @@ class JwtProvider
         $signer = new Sha256();
 
         return (new Builder())
-            ->withClaim('name', ['publish' => ['*']])
+            ->withClaim('mercure', ['publish' => ['*']])
             ->getToken($signer, new Key($this->key))
             ->__toString();
     }
