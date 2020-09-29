@@ -50,6 +50,34 @@
         }
         form.addEventListener('submit', handleForm);
 
+        // 'mercure' is used as the docker-compose service name. We replace it by the actual url for the browser.
+        const link = '{{ app.request.attributes.get('_links').getLinksbyRel('mercure')[0].getHref }}'
+            .replace("mercure", "localhost:3000");
+        const url = new URL(link);
+
+        url.searchParams.append('topic', 'http://astrochat.com/channel/{id}');
+        console.log(url)
+        const eventSource = new EventSource(url);
+
+        const appUser = {{ app.user.id }};
+
+        eventSource.onmessage = ({data}) => {
+            const message = JSON.parse(data);
+            document.querySelector('.bg-light').insertAdjacentHTML(
+                'beforeend',
+                appUser === message.author.id ?
+                    `<div class="row w-75 float-right">
+                    <b>${message.author.username}</b>
+                    <p class="alert alert-info w-100">${message.content}</p>
+                </div>` :
+                    `<div class="row w-75 float-left">
+                    <b>${message.author.username}</b>
+                    <p class="alert alert-success w-100">${message.content}</p>
+                </div>`
+            )
+            chatDiv.scrollTop = chatDiv.scrollHeight;
+        }
+
         const submit = document.querySelector('button');
         submit.onclick = e => { // On change le comportement du submit
             const message = document.getElementById('message'); // Récupération du message dans l'input correspondant

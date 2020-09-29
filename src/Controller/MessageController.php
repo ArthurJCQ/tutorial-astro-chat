@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\Mercure\PublisherInterface;
+use Symfony\Component\Mercure\Update;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -24,7 +26,8 @@ class MessageController extends AbstractController
         Request $request,
         ChannelRepository $channelRepository,
         SerializerInterface $serializer,
-        EntityManagerInterface $em): JsonResponse
+        EntityManagerInterface $em,
+        PublisherInterface $publisher): JsonResponse
     {
         $data = \json_decode($request->getContent(), true);
         if (empty($content = $data['content'])) {
@@ -49,6 +52,13 @@ class MessageController extends AbstractController
         $jsonMessage = $serializer->serialize($message, 'json', [
             'groups' => ['message']
         ]);
+
+        $update = new Update(
+            sprintf('http://astrochat.com/channel/%s',
+                $channel->getId()),
+            $jsonMessage
+        );
+        $publisher($update);
 
         return new JsonResponse(
             $jsonMessage,
