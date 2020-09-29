@@ -4,7 +4,7 @@
 
 Il s'agit du tutoriel Symfony et Mercure disponible sur le [codelabs de Eleven Labs](https://codelabs.eleven-labs.com/).
 
-Le but est de créer un système minimaliste de messagerie instantanné avec Symfony et le protocol Mercure 
+Le but est de créer un système minimaliste de messagerie instantannée avec Symfony et le protocole Mercure 
 qui permet l'échange d'informations client-serveur en temps réel.
 
 ## Usage
