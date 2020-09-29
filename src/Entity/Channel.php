@@ -25,13 +25,13 @@ class Channel
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups("message")
+     * @Groups("channel")
      */
     private string $name;
 
     /**
      * @ORM\OneToMany(targetEntity=Message::class, mappedBy="channel", orphanRemoval=true)
-     * @Groups("message")
+     * @Groups("channel")
      */
     private Collection $messages;
 
