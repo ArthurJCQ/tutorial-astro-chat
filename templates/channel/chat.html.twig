@@ -56,7 +56,7 @@
         const url = new URL(link);
 
         url.searchParams.append('topic', 'http://astrochat.com/channel/{{ channel.id }}');
-        console.log(url)
+
         const eventSource = new EventSource(url);
 
         const appUser = {{ app.user.id }};
