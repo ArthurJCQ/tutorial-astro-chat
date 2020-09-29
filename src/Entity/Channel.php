@@ -8,6 +8,7 @@ use App\Repository\ChannelRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass=ChannelRepository::class)
@@ -18,16 +19,19 @@ class Channel
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
+     * @Groups("channel")
      */
     private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("message")
      */
     private string $name;
 
     /**
      * @ORM\OneToMany(targetEntity=Message::class, mappedBy="channel", orphanRemoval=true)
+     * @Groups("message")
      */
     private Collection $messages;
 
