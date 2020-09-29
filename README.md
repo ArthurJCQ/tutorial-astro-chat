@@ -17,7 +17,7 @@ Naviguez entre les branches pour suivre le tutoriel étape par étape :
 - `codelabs/send-message` => Troisième étape du codelabs
 - `codelabs/mercure-config` => Quatrième étape du codelabs
 - `codelabs/discovery-and-publish` => Cinquième étape du codelabs
-- `codelabs/security-mercure` => Sixième étape du codelabs
+- `codelabs/security-mercure` => Sixième étape du codelabs, application complète et fonctionnelle
 
 Bon tutoriel !
 
